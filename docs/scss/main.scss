@@ -1,20 +1,11 @@
 @use "sass:color";
 
-// variables
-$primaryColor: #2bac73;
+$primaryColor: #8b5a2b; // Модон өнгө (Brown)
 $primaryColorDark: color.scale($primaryColor, $lightness: -15%);
-
-$secondaryColor: #ff914d;
+$secondaryColor: #d2b48c; // Цайвар модон өнгө (Tan)
 $secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
 
 @import "../../node_modules/bulma/bulma";
-
-// custom styles
-:root {
-  --bulma-primary-h: 151deg;
-  --bulma-primary-s: 65%;
-  --bulma-primary-l: 42%;
-}
 
 .button.is-primary {
   background-color: $primaryColor;
@@ -22,22 +13,34 @@ $secondaryColorDark: color.scale($secondaryColor, $lightness: -15%);
   color: white;
   transition: all 0.2s ease;
 }
-
 .button.is-primary:hover {
   background-color: $primaryColorDark;
   border-color: $primaryColorDark;
   color: white;
 }
 
-.button.is-secondary {
-  background-color: $secondaryColor;
-  border-color: $secondaryColor;
-  color: white;
-  transition: all 0.2s ease;
+.navbar-brand a {
+  p {
+    color: $primaryColor;
+    font-size: 1.1rem;
+  }
+  span {
+    color: $secondaryColorDark;
+  }
 }
 
-.button.is-secondary:hover {
-  background-color: $secondaryColorDark;
-  border-color: $secondaryColorDark;
-  color: white;
+.app-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fcfaf7;
+}
+
+.app-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.app-top-navbar-right {
+  flex-grow: 1;
+  justify-content: flex-end;
 }
