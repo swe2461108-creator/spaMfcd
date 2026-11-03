@@ -1,6 +1,8 @@
-import { t, toggleLanguage } from "../i18n/i18n.js";
+import { t, toggleLanguage, getCurrentLanguage } from "../i18n/i18n.js";
 
 export function renderNavbar() {
+  const currentLang = getCurrentLanguage();
+  
   return `
     <header class="app-sticky app-shadow">
       <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -41,7 +43,10 @@ export function renderNavbar() {
               </a>
             </div>
             <div class="navbar-end">
-              <a class="navbar-item" href="#" id="langToggle">${t("nav.language")}</a>
+              <a class="navbar-item button is-light is-small" href="#" id="langToggle">
+                <span class="icon"><i class="fas fa-globe"></i></span>
+                <span>${t("nav.language")} (${currentLang.toUpperCase()})</span>
+              </a>
             </div>
           </div>
         </div>
@@ -52,19 +57,22 @@ export function renderNavbar() {
 
 export function initNavbar() {
   const burger = document.querySelector(".navbar-burger");
-  const languageToggle = document.getElementById("langToggle");
-  if (!burger) return;
   const menu = document.getElementById("topNavbar");
+  const languageToggle = document.getElementById("langToggle");
 
-  burger.addEventListener("click", () => {
-    burger.classList.toggle("is-active");
-    menu?.classList.toggle("is-active");
-  });
+  if (burger && menu) {
+    burger.addEventListener("click", () => {
+      burger.classList.toggle("is-active");
+      menu.classList.toggle("is-active");
+      const isExpanded = burger.classList.contains("is-active");
+      burger.setAttribute("aria-expanded", String(isExpanded));
+    });
+  }
 
   if (languageToggle) {
     languageToggle.addEventListener("click", (e) => {
       e.preventDefault();
-      toggleLanguage();
+      toggleLanguage(); // MN -> EN -> KO -> MN дарааллаар хэл сольно
       window.location.reload();
     });
   }

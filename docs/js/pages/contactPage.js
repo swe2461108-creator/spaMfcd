@@ -1,10 +1,11 @@
+import { t } from "../i18n/i18n.js";
 import { renderPageLayout } from "../layouts/pageLayout.js";
 
 export function renderContactPage() {
   const app = document.getElementById("app");
   app.innerHTML = renderPageLayout({
     id: "contact",
-    title: "Холбоо барих",
-    content: `<p>Манай урлантай холбогдох.</p>`,
+    title: t("contact.title"),
+    content: `<p>${t("contact.text")}</p>`,
   });
 }

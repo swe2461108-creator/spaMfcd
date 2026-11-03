@@ -22,7 +22,16 @@ export function t(path) {
 
 export function toggleLanguage() {
   const current = getCurrentLanguage();
-  const next = current === "mn" ? "en" : "mn";
+  let next = "mn";
+
+  if (current === "mn") {
+    next = "en";
+  } else if (current === "en") {
+    next = "ko";
+  } else {
+    next = "mn";
+  }
+
   setLanguage(next);
   return next;
 }
