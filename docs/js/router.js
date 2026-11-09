@@ -12,6 +12,6 @@ export function initRouter(routes) {
     }
   }
 
-  window.addEventListener("load", renderRoute);
-  window.addEventListener("hashchange", renderRoute);
+  window.addEventListener("load", renderRoute); 
+  window.addEventListener("hashchange", renderRoute); 
 }
