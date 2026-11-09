@@ -1,15 +1,18 @@
-import { renderOverviewPage } from "./pages/overviewPage.js";
-import { renderSearchPage } from "./pages/searchPage.js";
-import { renderCalculationPage } from "./pages/calculationPage.js";
-import { renderBooksPage } from "./pages/booksPage.js";
-import { renderContactPage } from "./pages/contactPage.js";
-import { renderNotFoundPage } from "./pages/notFoundPage.js";
+function renderPage(title, text) {
+  const app = document.getElementById("app");
+  app.innerHTML = `
+    <div class="box">
+      <h2 class="title is-4">${title}</h2>
+      <p>${text}</p>
+    </div>
+  `;
+}
 
 export const routes = {
-  "#/overview": renderOverviewPage,
-  "#/search": renderSearchPage,
-  "#/calculation": renderCalculationPage,
-  "#/books": renderBooksPage,
-  "#/contact": renderContactPage,
-  "#/404": renderNotFoundPage,
+  "#/overview": () => renderPage("Overview", "Welcome to MODON ART."),
+  "#/search": () => renderPage("Search", "Browse MODON ART products."),
+  "#/calculation": () => renderPage("Calculation", "Custom order price calculator."),
+  "#/books": () => renderPage("Catalog", "MODON ART product catalog."),
+  "#/contact": () => renderPage("Contact", "Contact MODON ART team."),
+  "#/404": () => renderPage("404", "Page not found."),
 };
